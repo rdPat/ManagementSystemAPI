@@ -1,0 +1,79 @@
+debug: true
+
+server:
+  port: 8083
+
+spring:
+  profiles:
+    active: dev
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  application:
+    name: Spring-boot-tutorial
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    url: jdbc:mysql://localhost:3306/dcbapp
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+  logging:
+    file:
+      name: logs/app.log
+      path: 'logs'
+    level:
+      com:
+        yourpackage: DEBUG
+      root: INFO
+    pattern:
+      console: '%d{yyyy-MM-dd HH:mm:ss} - %msg%n'
+      file: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans"
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: qa
+  application:
+    name: Spring-boot-tutorial
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    url: jdbc:mysql://localhost:3306/dcbapp-qa
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+  logging:
+    file:
+      name: logs/app.log
+      path: 'logs'
+    level:
+      com:
+        yourpackage: DEBUG
+      root: INFO
+    pattern:
+      console: '%d{yyyy-MM-dd HH:mm:ss} - %msg%n'
+      file: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
+

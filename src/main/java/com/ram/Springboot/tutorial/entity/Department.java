@@ -20,7 +20,7 @@ public class Department
 {
     //data properties
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long departmentId;
     @NotBlank(message = "Please add department Name")
     @Length(max=10,min=1)
